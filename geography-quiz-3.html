@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>50 Days Revision Series — Geography Quiz 3</title>
+<style>
+  :root{
+    --navy:#0d1b3e;
+    --navy2:#132a5e;
+    --gold:#d4af37;
+    --gold-dim:#a9862a;
+    --cream:#f7f4ec;
+    --red:#c0392b;
+    --green:#1e7d4b;
+    --ink:#1a2036;
+    --muted:#6b7290;
+    --card:#ffffff;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #16265a 0%, transparent 60%),
+      radial-gradient(1000px 500px at 110% 10%, #16265a 0%, transparent 55%),
+      var(--navy);
+    color:var(--ink);
+    font-family: 'Segoe UI', Inter, -apple-system, Arial, sans-serif;
+    min-height:100vh;
+  }
+  .display{font-family: Georgia, 'Times New Roman', serif;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--gold);color:var(--navy);}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;color:#f2e9cf;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px;}
+  .brand img{height:34px;width:34px;border-radius:50%;}
+
+  /* ---------- Shell / centered card ---------- */
+  .shell{max-width:1100px;margin:0 auto;padding:10px 18px 60px;}
+  .center-wrap{min-height:74vh;display:flex;align-items:center;justify-content:center;}
+  .panel{
+    background:var(--card);border-radius:20px;
+    box-shadow:0 30px 70px rgba(0,0,0,.35);
+    width:100%;
+  }
+
+  /* ---------- Hero / landing ---------- */
+  .hero{
+    text-align:center;padding:40px 32px 34px;
+  }
+  .hero-logo{width:96px;height:96px;border-radius:50%;box-shadow:0 8px 24px rgba(0,0,0,.35);margin-bottom:14px;}
+  .eyebrow{
+    display:inline-block;color:var(--gold-dim);font-size:12px;letter-spacing:2.5px;
+    text-transform:uppercase;font-weight:700;margin-bottom:6px;
+  }
+  h1.title{
+    font-size:30px;margin:2px 0 4px;color:var(--navy);line-height:1.15;
+  }
+  h1.title span{color:var(--red);}
+  .subtitle{color:var(--muted);font-size:16px;margin-bottom:22px;}
+  .subtitle b{color:var(--navy2);}
+
+  .name-form{max-width:380px;margin:0 auto;text-align:left;}
+  .name-form label{font-size:13px;color:var(--muted);font-weight:600;}
+  .name-form input{
+    width:100%;padding:13px 14px;margin-top:6px;border-radius:10px;
+    border:1.5px solid #dfe2ec;font-size:15px;outline:none;
+  }
+  .name-form input:focus{border-color:var(--gold);}
+  .btn{
+    border:none;border-radius:10px;padding:13px 22px;font-weight:700;font-size:15px;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn-primary{background:var(--navy);color:#fff;}
+  .btn-primary:hover{background:var(--navy2);box-shadow:0 8px 18px rgba(13,27,62,.35);}
+  .btn-gold{background:var(--gold);color:var(--navy);}
+  .btn-gold:hover{box-shadow:0 8px 18px rgba(212,175,55,.4);}
+  .btn-outline{background:#fff;border:1.5px solid var(--navy);color:var(--navy);}
+  .btn-outline:hover{background:#f1f3fb;}
+  .btn-red{background:var(--red);color:#fff;}
+  .btn-red:hover{box-shadow:0 8px 18px rgba(192,57,43,.35);}
+  .btn-block{width:100%;margin-top:16px;}
+  .btn-sm{padding:8px 14px;font-size:13px;border-radius:8px;}
+  .err{color:var(--red);font-size:13px;margin-top:8px;display:none;}
+
+  /* ---------- Set selection ---------- */
+  .sets-header{padding:30px 32px 6px;text-align:center;}
+  .greet{color:var(--navy2);font-weight:700;font-size:18px;}
+  .sets-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:16px;padding:20px 32px 34px;
+  }
+  .set-card{
+    border:1.5px solid #e6e8f2;border-radius:14px;padding:18px;text-align:left;
+    background:linear-gradient(180deg,#fff,#fbfbfe);transition:.15s;position:relative;
+  }
+  .set-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 26px rgba(13,27,62,.12);}
+  .set-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--gold);
+    font-weight:800;font-size:14px;margin-bottom:10px;
+  }
+  .set-title{font-weight:700;color:var(--navy);font-size:16px;margin-bottom:2px;}
+  .set-meta{font-size:12.5px;color:var(--muted);margin-bottom:14px;}
+  .set-topics{font-size:11.5px;color:var(--gold-dim);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px;}
+
+  /* ---------- Quiz layout ---------- */
+  .quiz-wrap{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start;}
+  @media(max-width:880px){.quiz-wrap{grid-template-columns:1fr;}}
+
+  .q-card{background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.28);padding:24px 26px;min-height:420px;display:flex;flex-direction:column;}
+  .q-topbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .q-tag{background:#eef1fb;color:var(--navy2);font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:20px;}
+  .q-progress{font-size:12.5px;color:var(--muted);font-weight:600;}
+  .q-number{font-size:12px;color:var(--gold-dim);font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:10px 0 4px;}
+  .q-text{font-size:18px;line-height:1.55;color:var(--ink);font-weight:600;margin-bottom:18px;white-space:pre-line;}
+  .options{display:flex;flex-direction:column;gap:10px;flex:1;}
+  .opt{
+    display:flex;align-items:flex-start;gap:12px;border:1.6px solid #e4e7f1;border-radius:11px;
+    padding:12px 14px;cursor:pointer;transition:.12s;
+  }
+  .opt:hover{border-color:var(--gold);background:#fffdf5;}
+  .opt.selected{border-color:var(--navy);background:#eef1fb;}
+  .opt .tag{
+    flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1.6px solid #ccd1e4;
+    display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;color:var(--muted);
+  }
+  .opt.selected .tag{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .opt .otext{font-size:14.5px;line-height:1.5;padding-top:3px;}
+
+  /* review coloring */
+  .opt.correct{border-color:var(--green);background:#effaf3;}
+  .opt.correct .tag{background:var(--green);border-color:var(--green);color:#fff;}
+  .opt.wrong{border-color:var(--red);background:#fdf0ef;}
+  .opt.wrong .tag{background:var(--red);border-color:var(--red);color:#fff;}
+  .opt-expl{font-size:12.5px;margin-top:6px;padding-top:6px;border-top:1px dashed #e1e4ef;color:var(--muted);line-height:1.5;}
+  .opt.correct .opt-expl{color:#1b6b41;}
+  .opt.wrong .opt-expl{color:#a8362a;}
+
+  .q-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:20px;flex-wrap:wrap;}
+  .q-actions .left,.q-actions .right{display:flex;gap:8px;flex-wrap:wrap;}
+
+  /* ---------- Palette sidebar ---------- */
+  .side{background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.28);padding:18px;}
+  .side h4{margin:0 0 10px;font-size:13px;color:var(--navy2);text-transform:uppercase;letter-spacing:.6px;}
+  .user-chip{display:flex;align-items:center;gap:10px;background:var(--navy);color:#f2e9cf;border-radius:12px;padding:10px 12px;margin-bottom:14px;}
+  .user-chip .av{width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;}
+  .user-chip .info div:first-child{font-weight:700;font-size:13.5px;}
+  .user-chip .info div:last-child{font-size:11px;opacity:.8;}
+  .legend{display:flex;flex-direction:column;gap:6px;font-size:11.5px;color:var(--muted);margin-bottom:12px;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block;}
+  .dot.notv{background:#e2e5f0;border:1px solid #c9cee3;}
+  .dot.ans{background:var(--green);}
+  .dot.notans{background:var(--red);}
+  .dot.review{background:#8a5ac0;}
+
+  .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:16px;}
+  .pnum{
+    aspect-ratio:1;border-radius:8px;border:none;background:#e2e5f0;color:#454b66;font-weight:700;font-size:12.5px;
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .pnum.ans{background:var(--green);color:#fff;}
+  .pnum.notans{background:var(--red);color:#fff;}
+  .pnum.review{background:#8a5ac0;color:#fff;}
+  .pnum.cur{outline:2.5px solid var(--gold);outline-offset:2px;}
+  .pnum.correctR{background:var(--green);color:#fff;}
+  .pnum.wrongR{background:var(--red);color:#fff;}
+  .pnum.skipR{background:#e2e5f0;color:#454b66;border:1.5px dashed #b9bfd8;}
+
+  .summary-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);padding:4px 0;border-bottom:1px dashed #eee;}
+  .summary-row b{color:var(--ink);}
+
+  /* ---------- Result screen ---------- */
+  .result-hero{
+    background:linear-gradient(135deg,var(--navy),#1b3a7a);color:#fff;border-radius:20px;padding:34px 30px;
+    text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4);
+  }
+  .seal{
+    width:130px;height:130px;border-radius:50%;margin:0 auto 14px;
+    border:4px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 30% 20%, #1b3a7a, #0d1b3e);
+  }
+  .seal .score{font-size:32px;font-weight:800;color:var(--gold);}
+  .seal .outof{font-size:11px;color:#cdd6ee;}
+  .result-name{font-size:15px;color:#cdd6ee;margin-bottom:2px;}
+  .result-set{font-size:13px;color:#9fb0e0;margin-bottom:16px;}
+  .stat-row{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:10px;}
+  .stat{text-align:center;}
+  .stat .n{font-size:20px;font-weight:800;}
+  .stat .l{font-size:11px;color:#cdd6ee;text-transform:uppercase;letter-spacing:.5px;}
+  .stat.g .n{color:#7ee2a8;}
+  .stat.r .n{color:#f28b81;}
+  .stat.y .n{color:#f3d27a;}
+
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 4px;}
+  .fchip{border:1.5px solid #dfe2ec;background:#fff;border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;color:var(--muted);}
+  .fchip.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .pill{padding:3px 9px;border-radius:20px;font-size:11.5px;font-weight:700;}
+  .pill.good{background:#e6f6ec;color:var(--green);}
+  .pill.mid{background:#fdf3e2;color:#b8860b;}
+  .pill.bad{background:#fdeceb;color:var(--red);}
+
+  .hidden{display:none !important;}
+  .footer-note{text-align:center;color:#aeb6d6;font-size:11.5px;margin-top:18px;}
+
+  @media(max-width:600px){
+    .hero{padding:28px 18px 22px;}
+    h1.title{font-size:22px;}
+    .q-card{padding:18px;}
+    .q-text{font-size:16px;}
+    .palette{grid-template-columns:repeat(5,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <span style="color:#f2e9cf;">Pakkirappa's CGL Hub</span>
+  </div>
+</div>
+
+<div class="shell" id="app"></div>
+
+<script>
+/* ============================================================
+   QUESTION DATA
+   Format per item: [examTag, questionText, [4 options], correctIndex(0-3), explanation]
+   ============================================================ */
+const DATA = [
+["SSC Stenographer 11/12/2024 (Morning)","Which is the largest sea located in the North Indian Ocean, covering an area of about 3.86 million square kilometres?",["Java Sea","Andaman Sea","Red Sea","Arabian Sea"],3,"The Arabian Sea, part of the North Indian Ocean (along with the Bay of Bengal), covers about 3.86 million sq km and shows higher salinity due to high evaporation and low freshwater influx. The Red Sea lies between Africa and Asia; the Java Sea is in Indonesia; the Andaman Sea is in the northeastern Indian Ocean."],
+["SSC CGL 09/09/2024 (3rd Shift)","Which of the following is the largest crustal plate on Earth with an area of over 103,000,000 km²?",["South American plate","African plate","Eurasian plate","Pacific plate"],3,"The Pacific plate is the largest oceanic (and overall) crustal plate. Plate Tectonics theory was given by McKenzie, Parker and Morgan in 1967, dividing Earth's lithosphere into seven major plates and several minor ones."],
+["SSC CGL 11/09/2024 (2nd Shift)","In the context of water bodies, Neap Tides occur:",["when the earth, moon and sun line up in a straight line","when the sun and moon are on the opposite sides","when there is so much interference by continents","when the sun and moon are at right angles to each other"],3,"Neap tides occur when the Sun and Moon are at right angles to each other relative to Earth, dividing the gravitational/centrifugal forces so high tides are lower and low tides are higher than average. Spring tides (not neap) occur when Earth, Sun and Moon are in a straight line."],
+["SSC CGL 18/09/2024 (2nd Shift)","Which of the following is a landlocked Salt Lake in South-West Asia between Israel and Jordan?",["Don Juan Pond","Aral Sea","Caspian Sea","Dead Sea"],3,"The Dead Sea, with a salinity of 340 g/litre and water density of 1.240 kg/L (making swimming feel like floating), lies between Israel and Jordan. The Caspian Sea is the world's largest saltwater lake by volume; the Aral Sea lies between Kazakhstan and Uzbekistan."],
+["SSC CGL 24/09/2024 (2nd Shift)","Which ocean is encircling the continent of Antarctica and extends northward to 60 degrees south latitude?",["Atlantic Ocean","Indian Ocean","Pacific Ocean","Southern Ocean"],3,"The Southern Ocean, the newest of the world's five oceans (officially designated in 2000 by the IHO), encircles Antarctica up to 60°S latitude. The Atlantic lies between the Americas and Europe/Africa; the Indian Ocean between Africa, Asia and Australia; the Pacific between Asia and the Americas."],
+["SSC CGL 24/09/2024 (3rd Shift)","The name of the strait between the Pacific and Arctic oceans, separating the Chukchi Peninsula of the Russian Far East from the Seward Peninsula of Alaska, is the:",["Davis Strait","Florida Strait","Bering Strait","Messina Strait"],2,"The Bering Strait separates Russia's Chukchi Peninsula from Alaska's Seward Peninsula, connecting the Pacific and Arctic oceans. Davis Strait is between Greenland and Baffin Island; Florida Strait separates the Florida Keys from Cuba; the Strait of Messina lies between Sicily and Calabria in Italy."],
+["SSC CHSL 01/07/2024 (1st shift)","The peninsular plateau of India was a part of which continent earlier?",["North America","Europe","South America","Africa"],3,"India's Peninsular Plateau was part of the supercontinent Gondwana, which included Africa, South America, Australia and Antarctica. After breaking away, the Indian subcontinent drifted north and collided with Eurasia, forming the Himalayas — making Africa the most direct prior continental link."],
+["SSC CPO 27/06/2024 (3rd shift)","In 1596, who suggested in his work 'Thesaurus Geographicus' that the continents of the earth were not always located in their present positions?",["Louis Agassiz","Georges Cuvier","Abraham Ortelius","Dan Peter McKenzie"],2,"Abraham Ortelius, a Dutch mapmaker, proposed in 'Thesaurus Geographicus' (1596) that continents were once joined together, laying groundwork for the continental drift theory later developed fully by Alfred Wegener (1912), who described the supercontinent Pangaea."],
+["Matriculation Level 24/06/2024 (Shift-1)","Which of the following is NOT a part of the ocean floor?",["The continental shelf","The continental slope","The deep sea shelf","The deep sea plain"],2,"'The deep sea shelf' is not a real oceanic landform — the actual parts of the ocean floor are the continental shelf, continental slope, and deep sea plain (abyssal plain), plus oceanic deeps/trenches, which are covered with fine sediments like clay and silt."],
+["Matriculation Level 24/06/2024 (Shift-4)","The thermocline layer is the ______ layer of the ocean.",["second","third","fourth","first"],0,"Scientists divide the ocean into five layers: Epipelagic (surface, 1st), Mesopelagic/thermocline (twilight zone, 2nd), Bathypelagic (midnight zone, 3rd), Abyssopelagic (4th, near-freezing, no light), and Hadalpelagic (deepest, e.g. Mariana Trench)."],
+["Matriculation Level 25/06/2024 (Shift-1)","In 1962, who published 'The History of Ocean Basins', which outlined the theory of how tectonic plates could move, later called 'sea floor spreading'?",["Alfred Wegener","Louis Bauer","Harry Hammond Hess","George Edward Backus"],2,"Harry Hammond Hess, an American geologist and naval officer, published 'The History of Ocean Basins' in 1962, discovering that oceans were shallower in the middle and identifying Mid-Ocean Ridges, developing the sea floor spreading theory — where tectonic plates split apart from each other."],
+["Higher Secondary 25/06/2024 (Shift-4)","Which is the deepest point of Earth's oceans with a depth of 11,022 metres?",["Pacific Ocean's Mariana Trench","Indian Ocean's Java Trench","Atlantic Ocean's Puerto Rico Trench","Arctic Ocean's Eurasian Basin"],0,"The Mariana Trench in the Pacific Ocean, at 11,022 metres, is the deepest point on Earth. Other trenches: Puerto Rico Trench (8,400m, Atlantic), Tonga Trench (10,882m, SW Pacific), Java Trench (7,187m, Indian Ocean) — all shallower than the Mariana Trench."],
+["SSC Stenographer 12/10/2023 (Morning)","Which of the following is the correct match between column-A (Elements in earth crust) and column-B (Total % in earth crust)? i. Oxygen ii. Silicon iii. Aluminium iv. Iron — a. 8% b. 28% c. 47% d. 5%",["i-a, ii-b, iii-c, iv-d","i-c, ii-a, iii-b, iv-d","i-c, ii-b, iii-a, iv-d","i-b, ii-a, iii-c, iv-d"],2,"By mass, Earth's crust is 47% Oxygen, 28% Silicon, 8% Aluminium, and 5% Iron — followed by Calcium (3.63%), Sodium (2.83%), Potassium (2.59%) and Magnesium (2.09%). This gives the match i-c, ii-b, iii-a, iv-d."],
+["SSC CPO 03/10/2023 (Morning)","Continental Shelf which is the shallowest part of the ocean has an average gradient of:",["1° or even less","2° or even less","8° or even less","5° or even less"],0,"The Continental Shelf, the extended shallow margin of a continent, has an average gradient of 1° or even less, before ending at a steep 'shelf break' into the continental slope. Its width averages about 80 km globally but varies widely."],
+["SSC CPO 05/10/2023 (Evening)","Living organisms have been on Earth for how much percent of Earth's history?",["60%","40%","80%","20%"],2,"Taking Earth's age as ~4.6 billion years, unicellular life appeared ~3.8 billion years ago — a proportion of 3.8/4.6 × 100 ≈ 82.6%, rounded to about 80% of Earth's history."],
+["SSC CPO 05/10/2023 (Evening)","Choose the correct statement(s) related to 'continentality'. a. The sea exerts a moderating influence on climate. b. As the distance from the sea increases, the people experience extreme weather conditions. c. As one goes from the surface of the earth to higher altitudes, the atmosphere becomes less dense and temperature decreases.",["b and c","Only c","a and c","a and b"],3,"Statements 'a' and 'b' correctly describe continentality — the sea moderates climate, so places further from it experience more extreme (hot summers, cold winters) weather. Statement 'c' describes altitude/lapse rate, a separate phenomenon unrelated to continentality."],
+["SSC MTS 06/09/2023 (1st Shift)","What does El Niño refer to?",["Hot water current","Pressure water current","High air pressure","Low air pressure"],0,"El Niño ('Little Boy' in Spanish) refers to the warming of ocean surface waters (above-average sea surface temperatures) in the central/eastern tropical Pacific off Peru's coast, weakening trade winds. La Niña is the opposite periodic cooling phenomenon."],
+["SSC MTS 08/09/2023 (1st Shift)","Which of the following oceans is surrounded by the continent of North America and South America to the east?",["Pacific Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"],0,"The Pacific Ocean, the world's largest and deepest ocean (45% of global ocean surface), is bordered by the Americas to its east and Asia to its west. The Atlantic lies between the Americas (west) and Europe/Africa (east) — the reverse pairing."],
+["SSC MTS 08/09/2023 (3rd Shift)","Which of the following oceans extends into the Mediterranean Sea?",["Indian Ocean","Pacific Ocean","Atlantic Ocean","Arctic Ocean"],2,"The Atlantic Ocean, the world's 2nd largest, connects to the Mediterranean Sea via the Strait of Gibraltar. The Mediterranean is an intercontinental sea spread between Europe, North Africa and Western Asia."],
+["SSC MTS 13/09/2023 (3rd Shift)","The mohororvicic (Moho) discontinuity separates?",["Earth's lithosphere and asthenosphere","Earth's atmosphere and hydrosphere","Earth's crust and the inner core","Earth's crust and the mantle"],3,"The Moho discontinuity separates Earth's crust from the mantle, occurring at an average depth of about 8 km beneath ocean basins and 32 km beneath continental surfaces."],
+["SSC CGL 18/07/2023 (3rd shift)","Due to the attraction of the sun and the moon, what is the frequency of up and falls of ocean water in a day?",["Two","Three","Four","One"],0,"Ocean tides rise and fall Two times a day due to the combined gravitational pull of the Sun and Moon — creating semi-diurnal tides (though diurnal — once daily — and mixed tide patterns also occur in some regions)."],
+["SSC CGL 26/07/2023 (2nd shift)","Which is the correct sequence of oceans according to size (from largest to smallest)?",["Pacific Ocean > Antarctic Ocean > Indian Ocean > Atlantic Ocean","Pacific Ocean > Indian Ocean > Antarctic Ocean > Atlantic Ocean","Pacific Ocean > Atlantic Ocean > Indian Ocean > Antarctic Ocean","Pacific Ocean > Indian Ocean > Atlantic Ocean > Antarctic Ocean"],2,"The correct order by size is Pacific > Atlantic > Indian > Southern (Antarctic) > Arctic. The Pacific, world's largest, was named by Ferdinand Magellan, and the International Date Line passes through it."],
+["SSC CGL 01/12/2022 (4th Shift)","The percentage of earth's water found in the oceans is _________.",["94 percent","97.2 percent","90.2 percent","92.2 percent"],1,"Oceans hold 97.2% of Earth's water. Water covers 71% of Earth's surface, and the remaining distribution includes Glaciers (2.1%), Groundwater (0.61%), Freshwater lakes (0.009%), and other smaller shares — with only about 2.7% of Earth's water being fresh."],
+["SSC CGL 03/12/2022 (1st Shift)","How thick is the lithosphere?",["25 to 45 km","10 to 25 km","10 to 200 km","5 to 10 km"],2,"The lithosphere, the outermost mechanical layer consisting of the entire crust plus the top of the mantle, is 10 to 200 km thick. Beneath it lies the asthenosphere (80-200 km), then the mesospheric mantle, outer core, and inner core."],
+["SSC CGL 13/12/2022 (4th Shift)","The crust is the Earth's outermost layer that is less than ______ percent of Earth by mass, with oceanic crust and continental crust often consisting of more felsic rocks.",["5","1","2","10"],1,"The crust makes up less than 1 percent of Earth's mass. Oceanic crust (~5 km thick, density ~3.0 g/cm³) is composed of denser mafic basalt rocks, while continental crust (~30 km thick, density ~2.7 g/cm³) is composed of lighter felsic rocks like granite."],
+["SSC CPO 09/11/2022 (Evening)","Movement of fault lines can cause:",["a flood","sudden rain","an earthquake","a storm"],2,"Movement along fault lines causes earthquakes — sudden shaking of the earth for a short time, tending to occur at plate boundaries (fault zones). Over 80% of earthquakes occur around the Pacific Ocean's edges, the 'Ring of Fire', measured using a seismograph."],
+["Graduate Level 03/08/2022 (Shift-3)","What is the average salinity of the Indian ocean?",["350 o/oo","35 o/oo","3.5 o/oo","3 o/oo"],1,"The average salinity of the Indian Ocean is 35 o/oo (35 parts per thousand). Salinity is the amount of salt in 1000 grams of water; a salinity above 24.7‰ is regarded as the upper limit for 'brackish water'."],
+["Higher Secondary 03/08/2022 (Shift-4)","Tsunami is NOT caused by:",["Hurricanes","volcanic eruptions","undersea landslides","Earthquakes"],0,"Tsunamis are giant waves caused by earthquakes, volcanic eruptions, or undersea landslides — NOT by hurricanes, which are atmospheric weather systems, not seismic/geological events."],
+["SSC MTS 12/07/2022 (Afternoon)","Which of the following is a warm current?",["Labrador current","Falkland current","Canary current","Gulf stream"],3,"The Gulf Stream (North Atlantic) is a warm current, along with the Kuroshio Current (North Pacific), Alaskan Current, and Brazilian Current. Labrador, Falkland, and Canary currents are all cold currents."],
+["SSC MTS 12/07/2022 (Evening)","The plate movements on earth are classified into ______ types.",["three","two","five","Six"],0,"Plate movements create three types of tectonic boundaries: convergent (plates collide), divergent (plates move apart), and transform (plates slide sideways past each other)."],
+["SSC MTS 15/07/2022 (Afternoon)","Ocean acidification is the ongoing decrease in the pH of the Earth's oceans, caused by the uptake of ______ from the atmosphere.",["Methane","carbon dioxide","nitrogen","argon"],1,"Ocean acidification is caused by oceans absorbing large amounts of carbon dioxide from the atmosphere, reducing seawater pH and disrupting marine food chains — not caused by methane, nitrogen, or argon uptake."],
+["SSC MTS 18/07/2022 (Morning)","The lowest known point on earth is called ________, which is present in the Pacific Ocean.",["Factorial Deep","Challenger Deep","Great Blue Hole","Great Barrier Reef"],1,"The Challenger Deep, located beneath the western Pacific Ocean (within the Mariana Trench), is the lowest known point on Earth. The Great Blue Hole is a marine sinkhole off Belize; the Great Barrier Reef is Australia's coral reef system."],
+["SSC MTS 18/07/2022 (Morning)","In coastal areas, during the night, wind blows from land to sea because:",["low pressure is created on land","land cools slower than water","water cools slower than land","high pressure is created at sea"],2,"At night, water cools slower than land, so land becomes cooler (higher pressure) while the sea stays relatively warmer (lower pressure), causing wind (land breeze) to blow from land towards the sea."],
+["SSC MTS 25/07/2022 (Morning)","The process of seepage of water into the ground is called ____.",["Infiltration","depletion","Storage","replenishment"],0,"Infiltration is the process by which surface water seeps/enters into the soil, an essential part of the hydrological cycle that recharges groundwater."],
+["SSC CHSL 24/05/2022 (Morning)","Which water body covers an area of 1,55,58,000 km² and makes up only 4.3% of the global ocean?",["Atlantic Ocean","Arctic Ocean","Southern Ocean","Indian Ocean"],1,"The Arctic Ocean, covering about 1,55,58,000 km² (4.3% of the global ocean), is the smallest and shallowest of the world's five major oceans."],
+["SSC CHSL 24/05/2022 (Evening)","Which is the largest continental shelf in the world?",["The shelf of India","The Indian Ocean shelf","The shelf in the Pacific Ocean","The Siberian shelf in the Arctic Ocean"],3,"The Siberian Shelf in the Arctic Ocean is the world's largest continental shelf — a continental shelf being the submerged edge of a continent lying under the ocean."],
+["SSC CGL 19/04/2022 (Morning)","Which of the following is a group of islands found in the tropical oceans consisting of coral reefs and a central depression?",["Guyots","Atoll","Seamount","Lagoon"],1,"An Atoll is a ring-shaped group of coral reef islands with a central depression (lagoon) — examples include the Great Chagos Bank and Macclesfield Bank. Guyots are undersea flat-topped mountains; Seamounts are underwater mountains that don't reach the surface; a Lagoon is the shallow water body separated from the ocean by a barrier reef."],
+["SSC MTS 13/10/2021 (Evening)","Name the only sea in the world that does NOT have a land boundary.",["Sargasso Sea","Pechora Sea","Amundsen Sea","Iroise Sea"],0,"The Sargasso Sea, part of the Atlantic Ocean, is the only sea with no land boundary at all — it is bounded instead by ocean currents, and is named for the brown Sargassum seaweed found floating there."],
+["SSC CGL 23/08/2021 (Evening)","Which of the following was NOT a part of Gondwanaland?",["Australia","South America","India","North America"],3,"North America was NOT part of Gondwana — the ancient supercontinent Gondwana comprised present-day South America, Africa, Madagascar, India, Australia, and Antarctica. North America was instead part of the northern supercontinent, Laurasia."],
+["SSC CHSL 19/03/2020 (Morning)","What is the normal air pressure at sea level?",["1013.25 millibars","886.13 millibars","985.14 millibars","1100.12 millibars"],0,"Standard atmospheric pressure at sea level is 1013.25 millibars, decreasing progressively as altitude increases."],
+["SSC CHSL 19/03/2020 (Morning)","India is divided into how many earthquake zones (seismic zones)?",["2","4","5","6"],1,"The Bureau of Indian Standards classifies India into 4 seismic zones (II, III, IV, V) based on historical seismic activity — Zone V being the most active and Zone II the least, using a magnitude scale ranging from 1 to 12."],
+["SSC CHSL 16/10/2020 (Morning)","The _____ is responsible for Earth's magnetic field.",["inner core","mantle","outer core","crust"],2,"The outer core is responsible for Earth's magnetic field — flowing liquid metal there generates electric currents, and Earth's rotation causes these currents to form a magnetic field extending around the planet."],
+["Ssc Phase 13, 31/07/2025","About ocean floor features: 1. Abyssal plains are vast, flat deep-ocean floors. 2. Oceanic trenches are typically shallow depressions. Which of the above is/are correct?",["Statement 1 only","Statement 2 only","Both 1 and 2","Neither 1 nor 2"],0,"Statement 1 is correct — abyssal plains are among the flattest regions on Earth (depths 3,000-6,000m), formed by fine sediment deposition. Statement 2 is wrong — oceanic trenches are actually the DEEPEST parts of the ocean (e.g. Mariana Trench, >10,000m), not shallow depressions, forming at subduction zones."],
+["Ssc Phase 13, 29/08/2025","Which of the following oceans is the third-largest ocean in the world?",["Pacific Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"],2,"The Indian Ocean is the third-largest of the world's five oceans (~70.56 million km²), bounded by Asia (north), Africa (west), and Australia (east) — distinct for currents that reverse annually due to monsoons. Pacific is 1st, Atlantic 2nd, Southern 4th, Arctic 5th."],
+["SSC MTS, 19 Feb 2026, Shift-3","In the context of constituents of Earth crust, which of the following is NOT the type of Rocks?",["Igneous","Sedimentary","Metamorphic","Caldera"],3,"Earth's crust is composed of three rock types: Igneous (cooled magma), Sedimentary (compacted sediments), and Metamorphic (rocks altered by heat/pressure). A Caldera is NOT a rock type — it's a geographic depression/crater formed when a volcano collapses into itself after an eruption."],
+["Delhi Police Constable, 03 Jan 2026, Shift-2","Which trench represents the deepest part of the Indian Ocean, located south of Sumatra and reaching depths of over 7,000 meters?",["Java Trench","Mariana Trench","Puerto Rico Trench","Tonga Trench"],0,"The Java Trench (Sunda Trench), south of Sumatra, plunges over 7,100m — the deepest point in the Indian Ocean. The Mariana Trench is the deepest in the Pacific (and world); the Puerto Rico Trench is deepest in the Atlantic."],
+["Delhi Police Constable, 26 Dec 2025, Shift-1","The 'Deccan Traps' region of India is primarily made up of what type of rock?",["Granite","Basalt","Marble","Sandstone"],1,"The Deccan Traps, covering much of west-central India (mainly Maharashtra), formed from massive fissure eruptions of fluid lava that solidified into thick, dark Basalt — an extrusive igneous rock. Granite is intrusive igneous; marble is metamorphic; sandstone is sedimentary."],
+["Ssc Phase 13, 25/07/2025","Which of the following best explains the origin of eskers in glaciated landscapes?",["Ridges carved by ice cutting bedrock","Till ridges under stagnant ice","Sinuous ridges from subglacial meltwater deposition","Hills shaped by ice pushing sediments"],2,"Eskers are long, winding (sinuous) ridges of sorted, stratified sand and gravel, formed by streams of meltwater flowing through tunnels within/underneath glaciers — distinct from moraines (unsorted till from ice movement) or drumlins (streamlined hills from ice flow)."],
+["Ssc Phase 13, 26/07/2025","Which of the following best explains the origin of eskers in glaciated landscapes?",["Ridges carved by ice cutting bedrock","Till ridges under stagnant ice","Sinuous ridges from subglacial meltwater deposition","Hills shaped by ice pushing sediments"],2,"Eskers evidence the direction of glacial meltwater flow — since water-formed, their sediment is 'sorted' (heavier stones first) and 'stratified' (layered), unlike chaotic glacial till. They're prominent in areas like Canada and Scandinavia, once covered by ice sheets."],
+["Ssc Phase 13, 28/07/2025","Which statement accurately describes outwash deposits?",["Angular, unsorted debris left by stagnant ice","Sorted, rounded sediments from meltwater streams","Fine clay blown by wind in dry glacial areas","Large erratics dropped on steep glacier slopes"],1,"Outwash (glaciofluvial) deposits are sediments carried by glacial meltwater streams beyond the glacier's terminus. Being water-transported, particles become rounded (via attrition) and sorted by size — unlike the angular, unsorted 'till' deposited directly by ice, forming outwash plains/sandurs."],
+["Ssc Phase 13, 31/07/2025","Which of the following statements about rainfall and streams in the Indian Desert is/are correct? 1. Streams formed during rain reach the sea. 2. Rainfall is below 150 mm annually.",["Only 1","Only 2","1 and 2 both are correct","Neither 1 nor 2 are correct"],1,"Statement 2 is correct — the Thar Desert receives very low rainfall, typically below 150mm/year (arid climate). Statement 1 is wrong: most streams here are ephemeral and vanish into sand before reaching the sea ('inland drainage') — the Luni river is the only significant one, and even it dries up or ends in the Rann of Kutch."],
+["Ssc Steno 2025, 07/08/2025, Shift-1","Assertion (A): The Chambal River is known for its badland topography called the Chambal ravines. Reason (R): The Chambal flows through a deep gorge and eroded terrain before joining the Yamuna.",["Both A and R are true, but R is not the correct explanation of A.","Both A and R are true, and R is the correct explanation of A.","A is true, but R is false.","A is false, but R is true."],1,"Both A and R are true, and R correctly explains A — the Chambal's flow through erodible alluvial terrain, combined with tectonic uplift and lack of vegetative cover, accelerates vertical erosion (gullies), producing the region's famous 'badlands' (ravines)."],
+["Ssc Steno 2025, 07/08/2025, Shift-3","Match Column A (Denudational Processes) with Column B (Their Driving Forces/Energy): A. Weathering B. Mass Movement C. Erosion and Transportation D. Denudation (overall process) — 1. Kinetic Energy 2. Gravitational/Molecular Stresses/Chemical Actions 3. Gravitational Force 4. External Forces acting on Earth surface",["A-2, B-3, C-1, D-4","A-2, B-1, C-3, D-4","A-4, B-3, C-2, D-1","A-1, B-2, C-3, D-4"],0,"Weathering (A) involves rock breakdown via molecular stress/chemical action (2); Mass Movement (B) is gravity-driven downslope movement (3); Erosion and Transportation (C) relies on kinetic energy of agents like water/wind (1); Denudation (D) is the general term for external forces wearing away Earth's surface (4)."],
+["Ssc Steno 2025, 07/08/2025, Shift-3","Which of the following is an erosional landform created primarily by river action?",["Moraine","Delta","Gorge","Levee"],2,"A Gorge is a deep, narrow, steep-sided valley formed by vertical river erosion (down-cutting), typically in a river's upper course — an erosional landform. Deltas and Levees are depositional river landforms; Moraines are depositional glacial features."],
+["Ssc Steno 2025, 08/08/2025, Shift-1","Consider the following statements: Statement 1: Diastrophism includes all processes that move, elevate, or build up portions of the Earth's crust. Statement 2: Exogenic processes derive their energy from the atmosphere, influenced by solar energy and tectonic gradients.",["Only Statement 1 is correct","Both statements 1 and 2 are correct","Both statements 1 and 2 are incorrect","Only Statement 2 is correct"],1,"Both statements are correct — Diastrophism (tectonism) refers to crustal deformation (faulting, folding, warping) via internal (endogenic) forces. Exogenic processes (weathering, erosion) occur on the surface, powered mainly by solar energy (driving wind/water cycle) and gravity (via tectonic gradients/slopes)."],
+["Ssc Steno 2025, 08/08/2025, Shift-2","What is Karst topography primarily associated with?",["Groundwater action in limestone or dolomite regions","River meandering in alluvial plains","Glacial deposition in polar regions","Wind erosion in arid deserts"],0,"Karst topography forms from the dissolution of soluble rocks like limestone, dolomite and gypsum by slightly acidic groundwater, creating sinkholes, caves, and stalactites/stalagmites — not associated with rivers, glaciers, or wind erosion."],
+["SSC CGL Tier 1, 12 Sep 2025, Shift-1","Consider the following statements about glacial landforms: Statement 1: Hanging valleys are often found opening into main glacial valleys at higher elevations. Statement 2: Spurs of such hanging valleys are frequently truncated into triangular facets.",["Only 1","Only 2","1 and 2 are correct","Neither 1 nor 2 are correct"],2,"Both statements are correct — a hanging valley forms when a smaller tributary glacier's valley is left 'hanging' above the deeper main glacial valley after ice melts. Statement 2 describes 'truncated spurs': the main glacier shears off interlocking spur ends, creating steep triangular facets along valley walls."],
+["SSC CGL Tier 1, 12 Sep 2025, Shift-2","Which of the following types of landslides involves backward rotation of the slipping material?",["Rockslide","Rock fall","Slump","Debris fall"],2,"A Slump is a mass movement where rock/soil moves along a curved (concave-up) surface, causing the block to rotate backward as it slides — distinct from rockslides/falls, which involve rapid movement without this rotation."],
+["SSC CGL Tier 1, 13 Sep 2025, Shift-1","In which type of geological formation are gorges most commonly developed?",["Soft sediment","Hard rocks","Glacial till","Volcanic ash"],1,"Gorges develop most commonly in Hard rocks (like granite or resistant limestone), where a river cuts vertically downward (down-cutting) faster than the sides can weather or collapse — maintaining steep, near-vertical walls rather than widening into a V-shaped valley as would happen in soft rock."],
+["SSC CGL Tier 1, 13 Sep 2025, Shift-2","Choose the correctly matched cave feature and its formation:",["Stalactite - Grows upward from cave floor","Stalagmite - Formed by dripping water from cave ceiling","Pillar - Hangs from the cave roof","Stalactite - Formed by upward mineral flow"],1,"A Stalagmite grows upward from the cave floor, formed by mineral-rich water dripping from the ceiling and depositing calcium carbonate on the floor over time. Stalactites (not stalagmites) hang from the ceiling; a Pillar/Column forms when a stalactite and stalagmite meet, not hanging from the roof alone."],
+["SSC CGL Tier 1, 13 Sep 2025, Shift-3","Natural levees are most commonly associated with which of the following environments?",["Arid deserts","Floodplains of large rivers","Glacial valleys","Coastal lagoons"],1,"Natural levees are raised sediment banks along a river in its lower course (floodplain), formed during floods as the river overflows and deposits its heaviest sediment (sand/silt) right at its edge — building up over repeated floods."],
+["SSC CGL Tier 1, 13 Sep 2025, Shift-3","Which of the following is/are characteristic features of wind-eroded landforms in desert regions? 1. Formation of mushroom-shaped rocks with a slender base and broad upper cap 2. Development of flat-topped residual hills resembling table surfaces 3. Emergence of rock remnants standing as isolated pedestals",["1 only","Both 1 and 2","Both 2 and 3","1, 2 and 3 all are correct"],3,"All three statements describe wind-eroded (aeolian) landforms: mushroom rocks form from differential wind abrasion (softer base erodes faster); flat-topped hills (mesas/buttes) are plateau remnants protected by resistant caprock; pedestal rocks are similar isolated remnants — all typical of arid, wind-dominated environments."],
+["SSC CGL Tier 1, 14 Sep 2025, Shift-2","Which of the following statements about rockslide is correct?",["It affects only the outermost layer of the rock face","It is slower than rock fall","It involves backward rotation of debris","It affects material to considerable depth"],1,"A rockslide involves rock sliding along a shear plane — still rapid/destructive, but slower than a rock fall (where rocks descend through the air in free-fall). Backward rotation describes a slump, not a rockslide; rockslides can affect significant depths, not just the outermost layer."],
+["SSC CGL Tier 1, 15 Sep 2025, Shift-3","Which of the following best distinguishes glacial till from water-laid glacial sediments?",["It is layered and stratified due to flowing meltwater.","It is composed of uniformly sized, rounded particles.","It is an unsorted mix of materials deposited directly by ice.","It forms only in glacial lakes through sediment settling."],2,"Glacial till is an unsorted, unstratified mix of materials (boulders to flour-sized clay) deposited directly by ice, unlike water-laid sediments (outwash) which are sorted (by weight) and stratified (layered) because flowing water separates particles by size and velocity."],
+["SSC CGL Tier 1, 16 Sep 2025, Shift-2","What causes a river to develop meanders?",["High-altitude origin","Sudden tectonic uplift","Lateral erosion in flat terrain","Ocean current influence"],2,"Meanders develop in a river's mature/old stage on flat terrain, as the gradient decreases, vertical down-cutting stops, and the river erodes laterally (sideways) — eroding the outer 'cut bank' and depositing sediment on the inner 'point bar', accentuating the curves."],
+["SSC CGL Tier 1, 18 Sep 2025, Shift-1","Which of the following pairs is correctly matched with reference to limestone cave formations?",["Stalactite - Rises from cave floor","Stalagmite - Hangs from cave roof","Pillar - Formed by union of stalactite and stalagmite","Stalagmite - Formed by water falling from floor"],2,"A Pillar/Column forms when a downward-growing stalactite and an upward-growing stalagmite meet and fuse. The other options reverse the actual definitions: stalactites hang from the ceiling (not rise from the floor); stalagmites grow from the floor (don't hang from the roof)."],
+["SSC CGL Tier 1, 20 Sept 2024, Shift-3","Which of the following statements about desert erosional landforms is/are correct? 1. Mushroom rocks are formed by water erosion and are typically found in glacial valleys. 2. Table rocks have a broad, flat top supported by a narrow base, resembling a plateau. 3. Pedestal rocks are remnants of resistant rocks shaped by wind deflation and abrasion.",["Only 1","Only 2","Only 3","Only 1 and 3"],2,"Only statement 3 is correct — pedestal rocks form via wind abrasion eroding a rock's base more than its top. Statement 1 is wrong: mushroom rocks are formed by WIND erosion in deserts, not water erosion in glacial valleys. Statement 2 is wrong: 'table rocks' (mesas) have a broad flat top on a WIDE base, not a narrow one."],
+["SSC MTS, 10 Feb 2026, Shift-1","As the river approaches the sea, the speed of the flowing water decreases and the river begins to break up into a number of streams called ______.",["levees","floodplain","tributary","distributaries"],3,"As a river nears the sea, its slowed, silt-heavy flow splits into numerous smaller branching streams called distributaries, forming a delta. A tributary does the opposite — a smaller stream joining a larger river upstream."],
+["SSC MTS, 10 Feb 2026, Shift-1","A group of islands, closely scattered in a body of water is called as:",["Strait","Gulf","Canyon","Archipelago"],3,"A large group/chain of islands closely scattered in a sea or ocean is called an Archipelago (e.g. the Indonesian Archipelago, or India's Andaman and Nicobar Islands). A Strait connects two water bodies; a Gulf is a large inlet surrounded by land; a Canyon is a deep narrow gorge."],
+["SSC MTS, 11 Feb 2026, Shift-3","A piece of land that is surrounded by water on three sides is known as _____.",["Strait","Isthmus","Peninsula","Gulf"],2,"A Peninsula extends from a mainland and is surrounded by water on three sides — the Indian subcontinent itself is a classic example, bordered by the Arabian Sea, Bay of Bengal, and Indian Ocean. An isthmus is a narrow land strip connecting two landmasses; a strait connects two water bodies; a gulf is a sea inlet."],
+["DP HCM 2025, 09 Jan 2026, Shift-1","Which of the following statements best reflects the Mantle Plume Hypothesis and its implications in explaining intraplate volcanism and hotspot tracks, particularly in contrast to plate boundary processes?",["Mantle plumes are narrow, buoyant columns of cold material rising from the upper mantle, forming island arcs and rift valleys primarily at divergent plate boundaries.","Mantle plumes originate from the asthenosphere, are stationary with respect to tectonic plates, and are responsible for features like the Mid-Atlantic Ridge and Mariana Trench.","Mantle plumes explain the episodic movement of tectonic plates by generating subduction zones, but cannot account for surface volcanic activity due to their low thermal energy.","Mantle plumes are deep-seated thermal anomalies, possibly rising from the core-mantle boundary, causing hotspot volcanism like the Hawaiian chain, independent of plate margins."],3,"The Mantle Plume hypothesis (Wilson and Morgan) holds that narrow, exceptionally hot (not cold) columns of magma rise from the core-mantle boundary, piercing lithospheric plates to create hotspots — like the Hawaiian chain — entirely independent of plate boundaries. It causes intraplate volcanism, unrelated to mid-ocean ridges/trenches, and does have immense thermal energy."],
+["DP HCM 2025, 12 Jan 2026, Shift-2","Which of the following statements most accurately describes the formation, composition, and geomorphic importance of eskers in glacial landscapes?",["Eskers are steep-sided, elongated ridges composed mainly of till, formed by subaerial erosion during glacial retreat in temperate climates.","Eskers are depositional features formed by wind action on glacial outwash plains, typically consisting of fine loess deposits accumulated during the last ice age.","Eskers form due to the lateral morainic deposition along valley sides and primarily indicate the maximum extent of glacial advance.","Eskers are sinuous ridges of stratified sand and gravel deposited by subglacial meltwater streams flowing within ice tunnels, serving as evidence of former glacial drainage patterns"],3,"Eskers are correctly defined as long, sinuous ridges of highly stratified sand and gravel, formed by subglacial meltwater streams flowing through pressurized ice tunnels beneath a retreating glacier — serving as fossil evidence of former glacial drainage, not formed by wind, subaerial erosion, or lateral moraine deposition."],
+["SSC CPO, 09 Dec 2025, Shift-1","Consider the following statements: 1. The Indian Desert extends east of the Aravali range. 2. The region has low annual precipitation.",["Only 1","Only 2","1 and 2 both are correct","Neither 1 nor 2 are correct"],1,"Statement 2 is correct — the Thar Desert receives very low annual precipitation (generally under 150mm). Statement 1 is wrong: the Thar Desert actually lies to the North-West and West of the Aravalli range, not the east."],
+["SSC CPO, 09 Dec 2025, Shift-2","Which of the following statements about the Indian Desert is correct?",["The Indian Desert lies to the east of the Aravali Hills and receives moderate rainfall.","It is a rocky plateau covered with dense forests and seasonal rivers.","The Indian Desert is an undulating sandy plain with sand dunes and receives less than 150 mm of rainfall annually.","The region lies in the southern part of the Deccan Plateau and is rich in black soil."],2,"The Thar (Indian) Desert is an undulating sandy plain with shifting sand dunes, located northwest of the Aravalli Hills, with an arid climate receiving under 150mm rainfall annually — not east of the Aravallis, not forested, and not part of the Deccan Plateau's black soil region."],
+["SSC CPO, 11 Dec 2025, Shift-2","Consider the following statements about the Indian Desert: 1. It lies to the west of the Aravali Hills. 2. It receives an average annual rainfall of over 250 mm.",["Only 1","Only 2","1 and 2 both are correct","Neither 1 nor 2 are correct"],0,"Statement 1 is correct — the Thar Desert lies to the northwest/west of the Aravalli range in Rajasthan. Statement 2 is wrong: the region is notoriously arid, with average annual rainfall far below 150mm, nowhere near 250mm."],
+["SSC CPO, 12 Dec 2025, Shift-2","In the alluvial plains of the Ganga, which of the following physical features will NOT be found?",["Oxbow lakes","Rapids","Meanders","Braided channels"],1,"Rapids and steep waterfalls are exclusively erosional features of a river's youthful, high-gradient upper mountainous course — NOT found in the flat alluvial plains of the Ganga, which instead show mature-stage depositional features like meanders, oxbow lakes, and braided channels."],
+["Delhi Police Constable, 26 Dec 2025, Shift-3","What is the northern part of the Western Coastal Plain known as?",["Konkan Coast","Coromandel Coast","Utkal Coast","Malabar Coast"],0,"India's Western Coastal Plain has three sections: the northern Konkan Coast (Gujarat/Daman through Maharashtra and Goa), the central Kanara Coast, and the southern Malabar Coast (Kerala). Coromandel and Utkal belong to the eastern coast instead."],
+["Delhi Police Constable, 29 Dec 2025, Shift-1","The southern part of the Eastern Coastal Plain, in Tamil Nadu, is known as the?",["Konkan Coast","Northern Circars","Malabar Coast","Coromandel Coast"],3,"The Eastern Coastal Plain has two sections: the northern Northern Circars (Odisha and Andhra Pradesh) and the southern Coromandel Coast, extending from Andhra Pradesh through Tamil Nadu — famous for receiving winter monsoons. Konkan and Malabar belong to the western coast."],
+["Delhi Police Constable, 03 Jan 2026, Shift-1","The Gomal Pass is situated between which two countries?",["India and Nepal","Pakistan and Afghanistan","China and India","Iran and Pakistan"],1,"The Gomal Pass, in the Hindu Kush range, links Pakistan's Khyber Pakhtunkhwa province to Afghanistan's Paktika and Ghazni provinces, with the Gomal River flowing through it. Passes between India and China instead include Nathu La and Shipki La."],
+["Delhi Police Constable, 03 Jan 2026, Shift-3","The Great Barrier Reef, the largest coral reef system in the world, is located along the coast of which country, spanning over 2,300 kilometers?",["Australia","Indonesia","Philippines","Maldives"],0,"The Great Barrier Reef, the world's largest coral reef system, lies off the north-eastern coast of Queensland, Australia, in the Coral Sea — so vast it's visible from space. Indonesia, the Philippines and the Maldives have significant reefs, but none match its scale."],
+["Delhi Police Constable, 04 Jan 2026, Shift-2","Which volcano is a classic example of a shield volcano, lava flows spreading over wide areas?",["Mauna Loa","Mount St. Helens","Mount Fuji","Mount Vesuvius"],0,"Mauna Loa (Hawaii) is the quintessential Shield Volcano, built from highly fluid, low-viscosity basaltic lava flows traveling far before cooling, forming a broad, gently sloping profile. Mount St. Helens, Fuji, and Vesuvius are all steep, conical Stratovolcanoes with explosive, ash-heavy eruptions."],
+["Delhi Police Constable, 05 Jan 2026, Shift-1","The Richter scale is used to measure which geophysical event, quantifying the energy released during such occurrences?",["Magnitude of earthquakes","Intensity","Atmospheric pressure variations","Tsunami heights"],0,"The Richter scale, invented by Charles F. Richter, is a logarithmic measure of an earthquake's Magnitude (total seismic energy released at the source) — distinct from the Mercalli scale, which measures subjective 'Intensity'/surface damage."],
+["Delhi Police Constable, 05 Jan 2026, Shift-1","A caldera is best described as what type of geological feature, formed when a volcanic magma chamber empties and collapses?",["Large volcanic crater formed after collapse of a magma chamber","Small cone-shaped volcano","Submarine trench","Lava plateau"],0,"A Caldera is a large, basin-like volcanic depression formed by the catastrophic inward collapse of a volcano's structural roof into its own emptied magma chamber after a massive eruption (e.g. Yellowstone Caldera) — distinct from a small cone volcano, a submarine trench, or a flat lava plateau."],
+["Delhi Police Constable, 05 Jan 2026, Shift-2","The 'Strait of Bab-el-Mandeb' is a critical maritime chokepoint connecting the Red Sea with which other body of water, vital for international shipping?",["Mediterranean Sea","Persian Gulf","Gulf of Aden","Arabian Sea"],2,"The Strait of Bab-el-Mandeb, between Yemen and the Horn of Africa (Djibouti, Eritrea), connects the Red Sea to the Gulf of Aden (and onward to the Indian Ocean), funnelling major global petroleum shipping. The Mediterranean connects via the Suez Canal instead; the Strait of Hormuz connects the Persian Gulf."],
+["Delhi Police Constable , 06 Jan 2026, Shift-2","The Suez Canal is a vital waterway connecting the Mediterranean Sea with which other body of water, facilitating global maritime trade?",["Red Sea","Black Sea","Caspian Sea","Dead Sea"],0,"The Suez Canal, an artificial sea-level waterway in Egypt, connects the Mediterranean Sea (north) to the Red Sea (south), allowing ships to travel between Europe and Asia without circumnavigating Africa. It has no connection to the landlocked Black, Caspian, or Dead Seas."],
+["Delhi Police Constable, 18 Dec 2025, Shift-1","What is the largest desert in India?",["Thar Desert","Rann of Kutch","Ladakh Desert","Deccan Plateau"],0,"The Thar Desert (Great Indian Desert) is India's largest desert (and 17th largest in the world), spanning Rajasthan, Gujarat, Punjab, and Haryana. The Rann of Kutch is a salt marsh, not a sand desert; Ladakh is India's largest COLD desert but smaller overall; the Deccan Plateau is a volcanic basalt landmass, not desert terrain."],
+["Delhi Police Constable, 19 Dec 2025, Shift-1","Which is the largest delta in the world?",["Ganga-Brahmaputra Delta","Amazon Delta","Mekong Delta","Nile Delta"],0,"The Ganga-Brahmaputra Delta (Sundarbans/Bengal Delta), emptying into the Bay of Bengal, is the world's largest river delta, home to the Royal Bengal Tiger and extensive mangrove forests — larger than the Amazon, Mekong, or Nile deltas."],
+["Delhi Police Constable, 26 Dec 2025, Shift-1","Which of the following is the primary geological feature of the Indian Desert?",["High rainfall zones","Wind erosion and dunes","Glacial formation","Alluvial deposits"],1,"The Thar (Indian) Desert's defining geological/geomorphological features are shaped by aeolian (wind) processes — severe wind erosion creating vast shifting sand dunes, including crescent-shaped barchans. Glaciers and alluvium relate instead to mountains and river plains respectively."],
+["Delhi Police Constable, 26 Dec 2025, Shift-2","Which of the following is considered a 'hotspot' for volcanic activity?",["Himalayas","Mid-Atlantic Ridge","Andes","Hawaii"],3,"Hawaii is the classic example of hotspot volcanism — formed as the Pacific Plate moves over a stationary mantle plume, creating volcanoes away from plate boundaries. The Himalayas form from continental collision; the Andes and Mid-Atlantic Ridge are plate-boundary volcanic features, not hotspots."]
+];
+
+const SET_SIZE = 25;
+const TOTAL_SETS = Math.ceil(DATA.length / SET_SIZE);
+
+/* ============================================================
+   APP STATE
+   ============================================================ */
+let state = {
+  screen: "landing", // landing | sets | quiz | result
+  userName: "",
+  currentSet: null, // 0-indexed
+  questions: [], // sliced questions for current set (with global index)
+  answers: {}, // qIndex(local) -> selectedOptionIndex
+  marked: {}, // qIndex(local) -> true
+  visited: {}, // qIndex(local) -> true
+  cur: 0,
+  resultFilter: "all" // all | correct | wrong | unattempted
+};
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
+function initials(name){ return name.trim().split(/\s+/).map(w=>w[0]).slice(0,2).join('').toUpperCase(); }
+function letter(i){ return ["A","B","C","D"][i]; }
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ============================================================
+   RENDER ROOT
+   ============================================================ */
+function render(){
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  if(state.screen === 'landing') app.appendChild(renderLanding());
+  else if(state.screen === 'sets') app.appendChild(renderSets());
+  else if(state.screen === 'quiz') app.appendChild(renderQuiz());
+  else if(state.screen === 'result') app.appendChild(renderResult());
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------------- LANDING ---------------- */
+function renderLanding(){
+  const wrap = el(`<div class="center-wrap"><div class="panel" style="max-width:540px;">
+    <div class="hero">
+      <img class="hero-logo" alt="Pakkirappa's CGL Hub" style="background:radial-gradient(circle at 30% 30%, #16265a, #0d1b3e);">
+      <div class="eyebrow">Pakkirappa's CGL Hub &middot; Education For All</div>
+      <h1 class="title display">50 Days Revision Series<br><span>Geography Quiz 3</span></h1>
+      <div class="subtitle">Chapters: <b>Rocks, Continents &amp; Oceans; Geomorphology and Landforms</b> &middot; ${DATA.length} Questions &middot; ${TOTAL_SETS} Sets</div>
+      <div class="name-form">
+        <label for="nameInput">Enter your name to begin</label>
+        <input id="nameInput" type="text" placeholder="e.g. Rahul Kumar" autocomplete="off">
+        <div class="err" id="nameErr">Please enter your name to continue.</div>
+        <button class="btn btn-primary btn-block" id="startBtn">Start Revision &rarr;</button>
+      </div>
+    </div>
+  </div></div>`);
+  const img = wrap.querySelector('img');
+  img.onerror = function(){ this.style.display='none'; };
+  img.src = "logo.jpg";
+  const input = wrap.querySelector('#nameInput');
+  const btn = wrap.querySelector('#startBtn');
+  const err = wrap.querySelector('#nameErr');
+  function go(){
+    const v = input.value.trim();
+    if(!v){ err.style.display='block'; input.focus(); return; }
+    state.userName = v;
+    state.screen = 'sets';
+    render();
+  }
+  btn.addEventListener('click', go);
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter') go(); });
+  return wrap;
+}
+
+/* ---------------- SET SELECTION ---------------- */
+function renderSets(){
+  const wrap = el(`<div class="panel">
+    <div class="sets-header">
+      <div class="greet">Welcome, ${escapeHtml(state.userName)} 👋</div>
+      <div class="subtitle" style="margin-top:4px;">Choose a set to begin. Each set has ${SET_SIZE} questions (last set may have fewer).</div>
+    </div>
+    <div class="sets-grid" id="setsGrid"></div>
+  </div>`);
+  const grid = wrap.querySelector('#setsGrid');
+  for(let s=0;s<TOTAL_SETS;s++){
+    const startI = s*SET_SIZE;
+    const count = Math.min(SET_SIZE, DATA.length-startI);
+    const card = el(`<div class="set-card">
+      <div class="set-num">${s+1}</div>
+      <div class="set-title">Set ${s+1} (${count} Questions)</div>
+      <div class="set-meta">Covers: SSC CGL / CHSL / MTS / CPO / Steno / Delhi Police / DP HCM</div>
+      <div class="set-topics">Rocks, Continents &amp; Oceans; Geomorphology &amp; Landforms</div>
+      <button class="btn btn-gold btn-sm" style="width:100%;">Attempt Set ${s+1}</button>
+    </div>`);
+    card.querySelector('button').addEventListener('click', ()=> startSet(s));
+    grid.appendChild(card);
+  }
+  return wrap;
+}
+
+function startSet(setIndex){
+  const startI = setIndex*SET_SIZE;
+  const endI = Math.min(startI+SET_SIZE, DATA.length);
+  state.currentSet = setIndex;
+  state.questions = DATA.slice(startI, endI).map((d,i)=>({
+    globalIndex: startI+i, tag:d[0], q:d[1], options:d[2], correct:d[3], expl:d[4]
+  }));
+  state.answers = {}; state.marked = {}; state.visited = {0:true}; state.cur = 0;
+  state.screen = 'quiz';
+  render();
+}
+
+/* ---------------- QUIZ ---------------- */
+function renderQuiz(){
+  const total = state.questions.length;
+  const q = state.questions[state.cur];
+  const answeredCount = Object.keys(state.answers).length;
+  const markedCount = Object.keys(state.marked).length;
+  const notVisited = total - Object.keys(state.visited).length;
+
+  const wrap = el(`<div>
+    <div class="quiz-wrap">
+      <div class="q-card">
+        <div class="q-topbar">
+          <span class="q-tag">${escapeHtml(q.tag)}</span>
+          <span class="q-progress">Question ${state.cur+1} of ${total} &middot; Set ${state.currentSet+1}</span>
+        </div>
+        <div class="q-number">Question ${state.cur+1}</div>
+        <div class="q-text">${escapeHtml(q.q)}</div>
+        <div class="options" id="optionsWrap"></div>
+        <div class="q-actions">
+          <div class="left">
+            <button class="btn btn-outline btn-sm" id="prevBtn" ${state.cur===0?'disabled style="opacity:.4;cursor:not-allowed;"':''}>&larr; Previous</button>
+            <button class="btn btn-outline btn-sm" id="clearBtn">Clear Response</button>
+          </div>
+          <div class="right">
+            <button class="btn btn-gold btn-sm" id="reviewBtn">${state.marked[state.cur] ? 'Unmark Review' : 'Mark for Review'}</button>
+            ${state.cur<total-1 ? '<button class="btn btn-primary btn-sm" id="nextBtn">Save & Next &rarr;</button>' : '<button class="btn btn-red btn-sm" id="submitBtn">Submit Quiz</button>'}
+          </div>
+        </div>
+      </div>
+      <div class="side">
+        <div class="user-chip">
+          <div class="av">${escapeHtml(initials(state.userName))}</div>
+          <div class="info"><div>${escapeHtml(state.userName)}</div><div>Set ${state.currentSet+1} in progress</div></div>
+        </div>
+        <h4>Question Palette</h4>
+        <div class="legend">
+          <span><span class="dot ans"></span> Answered</span>
+          <span><span class="dot notans"></span> Not Answered</span>
+          <span><span class="dot review"></span> Marked for Review</span>
+          <span><span class="dot notv"></span> Not Visited</span>
+        </div>
+        <div class="palette" id="palette"></div>
+        <div class="summary-row"><span>Answered</span><b id="ansCount">${answeredCount}</b></div>
+        <div class="summary-row"><span>Marked for Review</span><b id="markCount">${markedCount}</b></div>
+        <div class="summary-row"><span>Not Visited</span><b id="notvCount">${notVisited}</b></div>
+        <button class="btn btn-red btn-block" id="submitBtnSide">Submit Quiz</button>
+      </div>
+    </div>
+  </div>`);
+
+  // options
+  const ow = wrap.querySelector('#optionsWrap');
+  q.options.forEach((optText, i)=>{
+    const optEl = el(`<div class="opt" data-i="${i}">
+      <div class="tag">${letter(i)}</div>
+      <div class="otext">${escapeHtml(optText)}</div>
+    </div>`);
+    if(state.answers[state.cur]===i) optEl.classList.add('selected');
+    optEl.addEventListener('click', ()=>{
+      state.answers[state.cur] = i;
+      render();
+    });
+    ow.appendChild(optEl);
+  });
+
+  // palette
+  const pal = wrap.querySelector('#palette');
+  for(let i=0;i<total;i++){
+    const btn = document.createElement('button');
+    btn.className = 'pnum';
+    btn.textContent = i+1;
+    if(state.marked[i]) btn.classList.add('review');
+    else if(state.answers[i]!==undefined) btn.classList.add('ans');
+    else if(state.visited[i]) btn.classList.add('notans');
+    if(i===state.cur) btn.classList.add('cur');
+    btn.addEventListener('click', ()=>{ state.visited[i]=true; state.cur=i; render(); });
+    pal.appendChild(btn);
+  }
+
+  wrap.querySelector('#prevBtn').addEventListener('click', ()=>{
+    if(state.cur>0){ state.cur--; state.visited[state.cur]=true; render(); }
+  });
+  const nextBtn = wrap.querySelector('#nextBtn');
+  if(nextBtn) nextBtn.addEventListener('click', ()=>{
+    if(state.cur<total-1){ state.cur++; state.visited[state.cur]=true; render(); }
+  });
+  wrap.querySelector('#clearBtn').addEventListener('click', ()=>{
+    delete state.answers[state.cur]; render();
+  });
+  wrap.querySelector('#reviewBtn').addEventListener('click', ()=>{
+    if(state.marked[state.cur]) delete state.marked[state.cur];
+    else state.marked[state.cur] = true;
+    if(state.cur<total-1){ state.cur++; state.visited[state.cur]=true; }
+    render();
+  });
+  const subBtn = wrap.querySelector('#submitBtn');
+  if(subBtn) subBtn.addEventListener('click', confirmSubmit);
+  wrap.querySelector('#submitBtnSide').addEventListener('click', confirmSubmit);
+
+  return wrap;
+}
+
+function confirmSubmit(){
+  const total = state.questions.length;
+  const unattempted = total - Object.keys(state.answers).length;
+  const msg = unattempted>0
+    ? `You have ${unattempted} unanswered question(s). Submit anyway?`
+    : `Submit your quiz now?`;
+  if(confirm(msg)) submitQuiz();
+}
+
+function submitQuiz(){
+  let correct=0, wrong=0;
+  state.questions.forEach((q,i)=>{
+    if(state.answers[i]===undefined) return;
+    if(state.answers[i]===q.correct) correct++; else wrong++;
+  });
+  const total = state.questions.length;
+  const unattempted = total - correct - wrong;
+  state.lastResult = {correct, wrong, unattempted, total};
+  state.resultFilter = 'all';
+  state.screen = 'result';
+  render();
+}
+
+/* ---------------- RESULT ---------------- */
+function renderResult(){
+  const total = state.questions.length;
+  const r = state.lastResult;
+  const pct = Math.round((r.correct/total)*100);
+
+  const wrap = el(`<div>
+    <div class="result-hero">
+      <div class="seal"><div class="score">${r.correct}/${total}</div><div class="outof">SCORE &middot; ${pct}%</div></div>
+      <div class="result-name">${escapeHtml(state.userName)}</div>
+      <div class="result-set">Set ${state.currentSet+1} — Rocks, Continents &amp; Oceans / Geomorphology</div>
+      <div class="stat-row">
+        <div class="stat g"><div class="n">${r.correct}</div><div class="l">Correct</div></div>
+        <div class="stat r"><div class="n">${r.wrong}</div><div class="l">Wrong</div></div>
+        <div class="stat y"><div class="n">${r.unattempted}</div><div class="l">Skipped</div></div>
+      </div>
+    </div>
+
+    <div class="quiz-wrap" style="margin-top:18px;">
+      <div class="q-card" id="reviewCard"></div>
+      <div class="side">
+        <h4>Review Palette</h4>
+        <div class="legend">
+          <span><span class="dot ans"></span> Correct</span>
+          <span><span class="dot notans"></span> Wrong</span>
+          <span><span class="dot notv"></span> Skipped</span>
+        </div>
+        <div class="filter-bar" id="filterBar">
+          <button class="fchip active" data-f="all">All</button>
+          <button class="fchip" data-f="correct">Correct</button>
+          <button class="fchip" data-f="wrong">Wrong</button>
+          <button class="fchip" data-f="unattempted">Skipped</button>
+        </div>
+        <div class="palette" id="reviewPalette" style="margin-top:12px;"></div>
+        <button class="btn btn-outline btn-block" id="backSetsBtn">Back to Sets</button>
+        <button class="btn btn-primary btn-block" id="retakeBtn">Retake this Set</button>
+      </div>
+    </div>
+    <div class="footer-note">Keep revising — consistency wins the exam. 50 Days Revision Series by Pakkirappa's CGL Hub.</div>
+  </div>`);
+
+  state.reviewIdx = state.reviewIdx===undefined ? 0 : state.reviewIdx;
+
+  function statusOf(i){
+    if(state.answers[i]===undefined) return 'unattempted';
+    return state.answers[i]===state.questions[i].correct ? 'correct' : 'wrong';
+  }
+
+  function paintReview(){
+    const card = wrap.querySelector('#reviewCard');
+    const q = state.questions[state.reviewIdx];
+    const st = statusOf(state.reviewIdx);
+    card.innerHTML = '';
+    card.appendChild(el(`<div class="q-topbar">
+      <span class="q-tag">${escapeHtml(q.tag)}</span>
+      <span class="pill ${st==='correct'?'good':st==='wrong'?'bad':'mid'}">${st==='correct'?'Correct':st==='wrong'?'Incorrect':'Not Attempted'}</span>
+    </div>`));
+    card.appendChild(el(`<div class="q-number">Question ${state.reviewIdx+1}</div>`));
+    card.appendChild(el(`<div class="q-text">${escapeHtml(q.q)}</div>`));
+    const ow = el(`<div class="options"></div>`);
+    q.options.forEach((optText,i)=>{
+      const isCorrect = i===q.correct;
+      const isSelected = state.answers[state.reviewIdx]===i;
+      const cls = isCorrect ? 'correct' : (isSelected ? 'wrong' : '');
+      const optEl = el(`<div class="opt ${cls}">
+        <div class="tag">${letter(i)}</div>
+        <div style="flex:1;">
+          <div class="otext">${escapeHtml(optText)} ${isCorrect?'&nbsp;✓ Correct answer':''}${isSelected && !isCorrect?'&nbsp;✗ Your answer':''}</div>
+          <div class="opt-expl">${isCorrect ? '✓ Correct — '+escapeHtml(q.expl) : '✗ Incorrect — '+escapeHtml(q.expl)}</div>
+        </div>
+      </div>`);
+      ow.appendChild(optEl);
+    });
+    card.appendChild(ow);
+    const nav = el(`<div class="q-actions">
+      <div class="left"><button class="btn btn-outline btn-sm" id="rPrev">&larr; Previous</button></div>
+      <div class="right"><button class="btn btn-outline btn-sm" id="rNext">Next &rarr;</button></div>
+    </div>`);
+    card.appendChild(nav);
+    nav.querySelector('#rPrev').addEventListener('click', ()=>{
+      if(state.reviewIdx>0){ state.reviewIdx--; paintReview(); paintPalette(); }
+    });
+    nav.querySelector('#rNext').addEventListener('click', ()=>{
+      if(state.reviewIdx<total-1){ state.reviewIdx++; paintReview(); paintPalette(); }
+    });
+  }
+
+  function paintPalette(){
+    const pal = wrap.querySelector('#reviewPalette');
+    pal.innerHTML='';
+    for(let i=0;i<total;i++){
+      const st = statusOf(i);
+      if(state.resultFilter!=='all' && state.resultFilter!==st) continue;
+      const btn = document.createElement('button');
+      btn.className = 'pnum ' + (st==='correct'?'correctR':st==='wrong'?'wrongR':'skipR');
+      if(i===state.reviewIdx) btn.classList.add('cur');
+      btn.textContent = i+1;
+      btn.addEventListener('click', ()=>{ state.reviewIdx=i; paintReview(); paintPalette(); });
+      pal.appendChild(btn);
+    }
+  }
+
+  wrap.querySelectorAll('#filterBar .fchip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      wrap.querySelectorAll('#filterBar .fchip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      state.resultFilter = chip.dataset.f;
+      paintPalette();
+    });
+  });
+
+  wrap.querySelector('#backSetsBtn').addEventListener('click', ()=>{ state.screen='sets'; render(); });
+  wrap.querySelector('#retakeBtn').addEventListener('click', ()=>{ startSet(state.currentSet); });
+
+  paintReview();
+  paintPalette();
+  return wrap;
+}
+
+render();
+</script>
+</body>
+</html>
